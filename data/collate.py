@@ -32,12 +32,11 @@ class BaseCollateClass(nn.Module):
         batch_size = len(batch)
         print(batch_size)
 
-        hr_transformed = [self.hr_transform(batch[i]) \
+        hr_transformed = [self.hr_transform(batch[i]).unsqueeze(0) \
                             for i in range(batch_size)]
-        lr_transformed = [self.lr_transform(hr_transformed[i]) \
+        lr_transformed = [self.lr_transform(hr_transformed[i][0]).unsqueeze(0) \
                             for i in range(batch_size)]
 
-        # tuple of transforms
         transforms = (
             torch.cat(hr_transformed, 0),
             torch.cat(lr_transformed, 0)
