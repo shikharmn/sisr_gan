@@ -43,7 +43,8 @@ class BaseCollateClass(nn.Module):
             torch.cat(lr_transformed, 0)
         )
 
-        breakpoint()
+        print(len(hr_transformed), len(lr_transformed))
+        print(len(transforms[0]), len(transforms[1]))
 
         return transforms
 
