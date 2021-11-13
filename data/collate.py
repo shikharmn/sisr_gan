@@ -31,9 +31,9 @@ class BaseCollateClass(nn.Module):
         """
         batch_size = len(batch)
 
-        hr_transformed = [self.hr_transform(batch[i % batch_size]).unsqueeze_(0) \
+        hr_transformed = [self.hr_transform(batch[i % batch_size]) \
                             for i in range(batch_size)]
-        lr_transformed = [self.lr_transform(hr_transformed[i]).unsqueeze_(0) \
+        lr_transformed = [self.lr_transform(hr_transformed[i]) \
                             for i in range(batch_size)]
 
         # tuple of transforms
