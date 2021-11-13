@@ -43,6 +43,8 @@ class BaseCollateClass(nn.Module):
             torch.cat(lr_transformed, 0)
         )
 
+        breakpoint()
+
         return transforms
 
 class SISRCollateFunction(BaseCollateClass):
