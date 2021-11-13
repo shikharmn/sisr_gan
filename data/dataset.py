@@ -9,7 +9,7 @@ class SISRDataset(Dataset):
         root         (str): Training data set address.
     """
 
-    def __init__(self, root) -> None:
+    def __init__(self, root):
         super(SISRDataset, self).__init__()
         self.filenames = [os.path.join(root, x) for x in os.listdir(root)]
 
