@@ -64,7 +64,7 @@ def get_conv(in_channel, out_channel, lrelu=False):
             nn.LeakyReLU(0.2, True)
         )
     else:
-        layer = nn.Conv2d(in_channel, out_channel, (3,3), (1,1), (1,1)),
+        layer = nn.Conv2d(in_channel, out_channel, (3,3), (1,1), (1,1))
     
     return layer
 
