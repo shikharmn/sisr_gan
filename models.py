@@ -43,7 +43,7 @@ class ResRDB(nn.Module):
 
     def __init__(self, channels: int, growths: int):
         super(ResRDB, self).__init__()
-        self.rdb = [RDB(channels, growths) for i in range(3)]
+        self.rdb = nn.ModuleList([RDB(channels, growths) for i in range(3)])
 
     def forward(self, x: torch.Tensor):
         identity = x
