@@ -31,7 +31,7 @@ class RDB(nn.Module):
         in4 = torch.cat([in3, out3], 1)
         out4 = self.lrelu(self.conv_list[3](in4))
         in5 = torch.cat([in4, out4], 1)
-        out5 = self.identity(self.conv_list[4](in5, 1))
+        out5 = self.identity(self.conv_list[4](in5))
         out = out5 * 0.2 + identity
 
         return out
