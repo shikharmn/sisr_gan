@@ -118,8 +118,8 @@ class Discriminator(nn.Module):
         )
 
     def make_layer(self, in_channel, out_channel, idx):
-        kernel = [(4,4),(3,3)]
-        pads = [(2,2),(1,1)]
+        kernel = [(3,3),(4,4)]
+        pads = [(1,1),(2,2)]
         layer = [nn.Conv2d(in_channel, out_channel, kernel[idx%2], pads[idx%2], (1,1), bias=False),
                  nn.BatchNorm2d(out_channel),
                  nn.LeakyReLU(0.2, True)]
