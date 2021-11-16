@@ -30,7 +30,6 @@ class BaseCollateClass(nn.Module):
                     (lr) and one high resolution (hr).
         """
         batch_size = len(batch)
-        print(batch_size)
 
         hr_transformed = [self.hr_transform(batch[i]).unsqueeze(0) \
                             for i in range(batch_size)]

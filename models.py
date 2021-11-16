@@ -114,7 +114,7 @@ class Discriminator(nn.Module):
         self.classifier = nn.Sequential(
             nn.Linear(512*4*4, 100),
             nn.LeakyReLU(0.2, True),
-            nn.Liner(100,1)
+            nn.Linear(100,1)
         )
 
     def make_layer(self, in_channel, out_channel, idx):
