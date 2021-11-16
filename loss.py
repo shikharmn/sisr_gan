@@ -15,23 +15,22 @@ class ContentLoss(nn.Module):
             'mean': [0.485, 0.456, 0.406],
             'std': [0.229, 0.224, 0.225]
         }
-
-        vgg19 = models.vgg19(pretrained=True, num_classes=1000).eval()
-        # Extract the output of the thirty-fifth layer in the VGG19 model as the content loss.
-        self.feature_extractor = nn.Sequential(*list(vgg19.features.children())[:35])
-        for parameters in self.feature_extractor.parameters():
-            parameters.requires_grad = False
-
         self.T_normalize = T.Compose([T.Normalize(
             mean = imagenet_normalize["mean"],
             std = imagenet_normalize["std"]
         )])
 
+        vgg19 = models.vgg19(pretrained=True, num_classes=1000).eval()
+        # Obtain the output of the thirty-fifth layer in the VGG19 model as the content loss.
+        self.features = nn.Sequential(*list(vgg19.features.children())[:35])
+        for parameters in self.features.parameters():
+            parameters.requires_grad = False
+
 
     def forward(self, sr, hr):
-        # Normalize both images
+        # Normalize all three channels of both images
         sr = self.T_normalize(sr)
         hr = self.T_normalize(hr)
-        loss = F.l1_loss(self.feature_extractor(sr), self.feature_extractor(hr))
+        loss = F.l1_loss(self.features(sr), self.features(hr))
 
         return loss
