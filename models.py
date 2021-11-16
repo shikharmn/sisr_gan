@@ -12,7 +12,7 @@ class RDB(nn.Module):
         self.channels = channels
         self.growths = growths
 
-        self.conv_list = [self.make_conv(i) for i in range(5)]
+        self.conv_list = nn.ModuleList([self.make_conv(i) for i in range(5)])
         self.lrelu = nn.LeakyReLU(0.2, True)
         self.identity = nn.Identity()
 
