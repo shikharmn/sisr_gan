@@ -23,15 +23,15 @@ class RDB(nn.Module):
     def forward(self, x):
         identity = x
 
-        out1 = self.lrelu(self.make_conv[0](x))
+        out1 = self.lrelu(self.make_conv(0)(x))
         in2 = torch.cat([x, out1], 1)
-        out2 = self.lrelu(self.make_conv[1](in2))
+        out2 = self.lrelu(self.make_conv(1)(in2))
         in3 = torch.cat([in2, out2], 1)
-        out3 = self.lrelu(self.make_conv[2](in3))
+        out3 = self.lrelu(self.make_conv(2)(in3))
         in4 = torch.cat([in3, out3], 1)
-        out4 = self.lrelu(self.make_conv[3](in4))
+        out4 = self.lrelu(self.make_conv(3)(in4))
         in5 = torch.cat([in4, out4], 1)
-        out5 = self.identity(self.make_conv[4](in5, 1))
+        out5 = self.identity(self.make_conv(4)(in5, 1))
         out = out5 * 0.2 + identity
 
         return out
